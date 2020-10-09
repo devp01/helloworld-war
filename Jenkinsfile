@@ -5,8 +5,7 @@ pipeline {
       steps {
         echo 'Building'
         git(changelog: true, url: 'https://github.com/devp01/helloworld-war.git', branch: 'master')
-        sh '''tar -czf /tmp/test_hello.tgz src/
-'''
+        sh 'tar -czf /tmp/test_hello.tgz src/'
         echo 'done'
       }
     }
@@ -19,9 +18,18 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        echo 'Deploying'
-      }
-    }
+        sshPublisher(failOnError: true, publishers: [
+                                  sshPublisherDesc(
+                                        configName: "test1",
+                                        verbose: true,
+                                        transfers: [
+                                              sshTransfer(sourceFiles: "/tmp/test_hello.tgz"),
+                                              sshTransfer(execCommand: "tar -xvf test_hello.tgz .")
+                                          ]
+                                      )
+                                  ])
+            }
+          }
 
-  }
-}
+        }
+      }
