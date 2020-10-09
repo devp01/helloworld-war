@@ -24,7 +24,7 @@ pipeline {
                                                                 verbose: true,
                                                                 transfers: [
                                                                           sshTransfer(sourceFiles: "/tmp/test_hello.tgz"),
-                                                                          sshTransfer(execCommand: "tar -xvf /tmp/test_hello.tgz -C /tmp/")
+                                                                          sshTransfer(execCommand: "cd /tmp && tar -xzf test_hello.tgz .")
                                                                       ]
                                                                   )
                                                               ])
