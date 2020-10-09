@@ -23,8 +23,8 @@ pipeline {
                                                                 configName: "test1",
                                                                 verbose: true,
                                                                 transfers: [
-                                                                          sshTransfer(sourceFiles: "/tmp/test_hello.tgz"),
-                                                                          sshTransfer(execCommand: "cd /tmp && tar -xzf test_hello.tgz .")
+                                                                          sshTransfer(sourceFiles: "/tmp/test_hello.tgz",),
+                                                                          sshTransfer(execCommand: "cd /tmp; tar -xvf test_hello.tgz .")
                                                                       ]
                                                                   )
                                                               ])
