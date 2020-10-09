@@ -19,15 +19,15 @@ pipeline {
     stage('Deploy') {
       steps {
         sshPublisher(failOnError: true, publishers: [
-                                                                                                                  sshPublisherDesc(
-                                                                                                                                        configName: "test1",
-                                                                                                                                        verbose: true,
-                                                                                                                                        transfers: [
-                                                                                                                                                              sshTransfer(sourceFiles: "test_hello.tgz",),
-                                                                                                                                                              sshTransfer(execCommand: "cd /tmp; tar -xvf test_hello.tgz")
-                                                                                                                                                          ]
-                                                                                                                                                      )
-                                                                                                                                                  ])
+                                  sshPublisherDesc(
+                                        configName: "test1",
+                                        verbose: true,
+                                        transfers: [
+                                              sshTransfer(sourceFiles: "test_hello.tgz",),
+                                              sshTransfer(execCommand: "cd /tmp; tar -xvf test_hello.tgz")
+                                          ]
+                                      )
+                                  ])
             }
           }
 
